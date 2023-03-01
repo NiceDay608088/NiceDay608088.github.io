@@ -24,23 +24,25 @@ Cache system, like Redis, is used to store product information like product id, 
 One of the commonly used scenario for cache is distributed lock, but lock is not a good design due to flash sale is a high concurrency with low-latency. Lock costs time and it makes system much more lower.
 
 ## message queue
-Message queue system is used to decouple services, asychronously communication among services. In this scenario, there are at least 3 services including payment, order, and flash sale. 
-- Once customer suceessfully reserved a product, a record will be generated in flash sale service.
-- Flash sale service send a record to in mq to notify order system to generate a record in database.
-- Customer view the order and pay for the order processing in payment service.
+Message queue system is used to decouple services, asychronously communication among services. In this scenario, there are at least 2 services including order, and flash sale. 
 
-We can see that 
+Products to be sold are stored in message queue. Once customer gets the opportunity to reserve a product, that is to say the user request reaches the flash sale service. Flash sale service will retrieve product pre-stored in message queue and send a record to message queue to notify order system to generate a record in database.
 
-How to make sure the user 
+We can see that data won't be written into disk or database in flash sale service in order to reduce I/O which is time cost operation. 
+
+How to make sure the user request is sent to mq successfully? Whether data is inconsistant if flash service is down?
+1. Message queue like Kafka supports acknowledge mode, when flash sale service get feedback that message reaches to message queue, it will notify message queue, the message has been sucessfully consumed. 
+2. If flash service is down,
+3. 
+
+In some application libraries, application will fetch more data than requested from message queue and cached the data in local memory to reduce further requests between application and message queue, in flash sale scenario, don't cache data in case application is down and data is not released in time.
 
 ## security
 ### risk control
 When customer pays for the product, it needs to check user status to see if user is 
 
-## end user
-
 
 ## security
 ### prevent malicious requests
 
-
+## performance
