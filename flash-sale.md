@@ -31,9 +31,9 @@ Products to be sold are stored in message queue. Once customer gets the opportun
 We can see that data won't be written into disk or database in flash sale service in order to reduce I/O which is time cost operation. 
 
 How to make sure the user request is sent to mq successfully? Whether data is inconsistant if flash service is down?
-1. Message queue like Kafka supports acknowledge mode, when flash sale service get feedback that message reaches to message queue, it will notify message queue, the message has been sucessfully consumed. 
-2. If flash service is down,
-3. 
+1. Message queue like Kafka supports acknowledge mode, when flash sale service get feedback from message queue that message sent to order service has reached message queeu, it will notify another message queue, the product message has been sucessfully consumed. 
+2. If flash service is down before sending the message to downstream message queue, application won't notify product message queue, thus the message will be consumed by other running application after timeout.
+3. If flash service is donw after 
 
 In some application libraries, application will fetch more data than requested from message queue and cached the data in local memory to reduce further requests between application and message queue, in flash sale scenario, don't cache data in case application is down and data is not released in time.
 
