@@ -61,24 +61,28 @@ Following cases will trigger kafka rebalaning
 3. exceed processing time. (max.poll.interval.ms)
 
 
-## limit rate
-
-## performance
-### kafka
+## rate limiting
+Rate limiting refers to preventing the frequency of an operation from exceeding some constraint. In large-scale systems, rate limiting is commonly used to protect underlying services and resources.
 
 
-### redis
+
+# performance
+## kafka
+
+
+## redis
+
+
+
+# design
+
+
+
 
 
 ### postgres
 
 
-## security
-### risk control
-When customer pays for the product, it needs to check user status to see if user is 
 
-
-## security
-### prevent malicious requests
  
 ## performance
