@@ -53,13 +53,13 @@ kafka.consumer.max-poll-records=20
 kafka.properties.max.poll.interval.ms=60000
 ```
 
-**rebalancing**
+**rebalancing** <br />
 Following cases will trigger kafka rebalaning
-```
+
 1. increase or decrease kafka consumer.
 2. not receiving heartbeat in time. (heartbeat.interval.ms)
 3. exceed processing time. (max.poll.interval.ms)
-```
+
 
 ## limit rate
 
