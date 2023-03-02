@@ -42,6 +42,7 @@ In some application libraries, application will fetch more data than requested f
 ### kafka
 
 **Some core parameters:**
+```
 // heartbeat timeout between client and server
 kafka.properties.session.timeout.ms = 25000
 // frequency of sending heartbeat
@@ -50,12 +51,15 @@ kafka.properties.heartbeat.interval.ms = 3000
 kafka.consumer.max-poll-records=20
 // message processing timeout
 kafka.properties.max.poll.interval.ms=60000
+```
 
 **rebalancing**
 Following cases will trigger kafka rebalaning
+```
 1. increase or decrease kafka consumer.
 2. not receiving heartbeat in time. (heartbeat.interval.ms)
 3. exceed processing time. (max.poll.interval.ms)
+```
 
 ## limit rate
 
