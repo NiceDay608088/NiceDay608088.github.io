@@ -37,9 +37,36 @@ How to make sure the user request is sent to mq successfully? Whether data is in
 2. If flash service is down before sending the message to downstream message queue, application won't notify product message queue, thus the message will be consumed by other running application after timeout.
 3. If flash service is down when message reaches the product message queue, an order will be created in order system, but client app will get 500 error as http response. App client should raise a new request to order service checking if order exists.
 
-In some application libraries, application will fetch more data than requested from message queue and cached the data in local memory to reduce further requests between application and message queue, in flash sale scenario, don't cache data in case application is down and data is not released in time.
+In some application libraries, application will fetch more data than requested from message queue and cached the data in local memory to reduce further requests between application and message queue.
+
+### kafka
+
+**Some core parameters:**
+// heartbeat timeout between client and server
+kafka.properties.session.timeout.ms = 25000
+// frequency of sending heartbeat
+kafka.properties.heartbeat.interval.ms = 3000
+// records pulled per request
+kafka.consumer.max-poll-records=20
+// message processing timeout
+kafka.properties.max.poll.interval.ms=60000
+
+**rebalancing**
+Following cases will trigger kafka rebalaning
+1. increase or decrease kafka consumer.
+2. not receiving heartbeat in time. (heartbeat.interval.ms)
+3. exceed processing time. (max.poll.interval.ms)
 
 ## limit rate
+
+## performance
+### kafka
+
+
+### redis
+
+
+### postgres
 
 
 ## security
