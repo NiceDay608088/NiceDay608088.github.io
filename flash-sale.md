@@ -39,27 +39,6 @@ How to make sure the user request is sent to mq successfully? Whether data is in
 
 In some application libraries, application will fetch more data than requested from message queue and cached the data in local memory to reduce further requests between application and message queue.
 
-### kafka
-
-**Some core parameters:**
-```
-// heartbeat timeout between client and server
-kafka.properties.session.timeout.ms = 25000
-// frequency of sending heartbeat
-kafka.properties.heartbeat.interval.ms = 3000
-// records pulled per request
-kafka.consumer.max-poll-records=20
-// message processing timeout
-kafka.properties.max.poll.interval.ms=60000
-```
-
-**rebalancing** <br />
-Following cases will trigger kafka rebalaning
-
-1. increase or decrease kafka consumer.
-2. not receiving heartbeat in time. (heartbeat.interval.ms)
-3. exceed processing time. (max.poll.interval.ms)
-
 
 ## rate limiting
 Rate limiting refers to preventing the frequency of an operation from exceeding some constraint. In large-scale systems, rate limiting is commonly used to protect underlying services and resources.
