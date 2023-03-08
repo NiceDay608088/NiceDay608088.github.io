@@ -1,10 +1,14 @@
 
 # Message Queue
 ## better performance
-Message queues enable asynchronous communication, which means that the endpoints that are producing and consuming messages interact with the queue, not each other.
-Producers can add requests to the queue without waiting for them to be processed. 
-Consumers process messages only when they are available. 
-No component in the system is ever stalled waiting for another, optimizing data flow.
+Message queues enable asynchronous communication, which means that the endpoints that are producing and consuming messages interact with the queue, not each other.<br/>
+
+Producers can add requests to the queue without waiting for them to be processed. <br/>
+
+Consumers process messages only when they are available. <br/>
+
+No component in the system is ever stalled waiting for another, optimizing data flow. <br/>
+
 
 
 # kafka
